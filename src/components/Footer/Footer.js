@@ -22,7 +22,7 @@ const Footer = () => {
               <strong>Products</strong>
             </h6>
             <p>
-              <a href="#">Book-IT</a>
+              <a href="#">BookStore</a>
             </p>
             <p>
               <a href="https://portfolio-aryan-mehta.vercel.app/">Portfolio</a>
