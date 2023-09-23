@@ -13,7 +13,7 @@ const Footer = () => {
               <strong>BookStore</strong>
             </h6>
             <p>
-            BookStore is a dynamic online React-based platform designed for book enthusiasts. This web application empowers users to explore an extensive collection of books, conveniently search for titles they desire, and seamlessly add their selected reads to a virtual shopping cart. Ultimately, users can complete their literary journey by making secure credit card transactions to purchase their chosen books.
+            BookStore is a dynamic online React-based platform designed for book enthusiasts. This web application empowers users to explore an extensive collection of books, conveniently search for titles they desire, and seamlessly add their selected reads to a virtual shopping cart.
             </p>
           </MDBCol>
           <hr className="w-100 clearfix d-md-none" />
