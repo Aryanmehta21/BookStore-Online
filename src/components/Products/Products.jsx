@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, InputAdornment, Input } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import Product from "./Product/Product.js";
@@ -7,11 +7,65 @@ import Carousel from "react-bootstrap/Carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import logo1 from "../../assets/4.jpeg";
 import "../ProductView/style.css";
+import axios from "axios";
+import styled from "styled-components";
+
+const SearchContainer = styled.div`
+  position: relative;
+`;
+
+const SuggestionsContainer = styled.div`
+  position: absolute;
+  top: 100%;
+  left: 20%;
+  right: 0;
+  background-color: #fff;
+  color: #000;
+  width: 60%;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  max-height: 200px;
+  // overflow-y: auto;
+`;
+
+const SuggestionItem = styled.div`
+  padding: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+`;
 
 const Products = ({ products, onAddToCart }) => {
   const classes = useStyles();
 
   const [searchTerm, setSearchTerm] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+
+  useEffect(() => {
+    if (searchTerm !== "") {
+      axios
+        .get(`https://openlibrary.org/search.json?q=${searchTerm}`)
+        .then((response) => {
+          const data = response.data;
+          if (data.docs && data.docs.length > 0) {
+            const newSuggestions = data.docs.map((doc) => doc.title);
+            setSuggestions(newSuggestions);
+          } else {
+            setSuggestions([]);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching search suggestions:", error);
+          setSuggestions([]);
+        });
+    } else {
+      setSuggestions([]);
+    }
+  }, [searchTerm]);
 
   return (
     <main className={classes.mainPage}>
@@ -20,7 +74,7 @@ const Products = ({ products, onAddToCart }) => {
         <Carousel.Item>
           <img className="d-block w-100" src={logo1} alt="slide" />
           <Carousel.Caption>
-            <div className={classes.searchs}>
+            <SearchContainer>
               <Input
                 className={classes.searchb}
                 type="text"
@@ -34,7 +88,22 @@ const Products = ({ products, onAddToCart }) => {
                   </InputAdornment>
                 }
               />
-            </div>
+              {searchTerm && (
+                <SuggestionsContainer>
+                  {suggestions.map((suggestion, index) => (
+                    <SuggestionItem
+                      key={index}
+                      onClick={() => {
+                        setSearchTerm(suggestion);
+                        setSuggestions([]); // Hide suggestions when an item is clicked
+                      }}
+                    >
+                      {suggestion}
+                    </SuggestionItem>
+                  ))}
+                </SuggestionsContainer>
+              )}
+            </SearchContainer>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
@@ -59,6 +128,7 @@ const Products = ({ products, onAddToCart }) => {
                     md={3}
                     lg={2}
                     id="pro"
+                    key={product.id}
                   >
                     <Product product={product} onAddToCart={onAddToCart} />
                   </Grid>
@@ -93,6 +163,7 @@ const Products = ({ products, onAddToCart }) => {
               md={4}
               lg={3}
               id="pro"
+              key={product.id}
             >
               <Product product={product} onAddToCart={onAddToCart} />
             </Grid>
