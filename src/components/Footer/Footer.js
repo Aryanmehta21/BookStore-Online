@@ -10,7 +10,7 @@ const Footer = () => {
           <MDBCol md="3" lg="3" xl="4" className="mx-auto mt-3">
             <h6 className="text-uppercase mb-4 font-weight-bold">
               <img src={logo} alt="Book Store App" height="50px" />
-              <strong>Book-IT</strong>
+              <strong>BookStore</strong>
             </h6>
             <p>
               Book-IT is an online React web application where the customer can
