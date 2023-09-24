@@ -1,71 +1,85 @@
 <img src="./src/assets/circles.png" height="250px" align="right"/>
 
-<h1 align="center">BOOK STORE USING REACTJS </h1>
+<h1 align="center">BookStore USING REACTJS </h1>
+
+BookStore is a dynamic online React-based platform designed for book enthusiasts. 
+This web application empowers users to explore an extensive collection of books, 
+conveniently search for titles they desire, and seamlessly add their selected reads to a virtual shopping cart.
 
 
-# BOOK-IT Description
-    Book-IT is an online React web application where the customer can purchase books online.
-    Through this book store the users can search for a book by its title and
-    later can add to the shopping cart and finally purchase using credit card transaction.
-    
- ##   [Live App Demo](https://akshatbookstore.netlify.app/)
- 
- 
- ![Alt text](https://github.com/Akshatjalan/Book-store-Reactjs/blob/main/src/assets/Web.jpg?raw=true "Main Page")
-
-# Tools Used
-
-- Build with `ReactJS`, `Javascript`, `HTML`, `CSS`.
-- `CommerceJS` provides Backend eCommerce APIs for any frontend framework
-- `Stripe` is used as a suite of payment APIs that powers commerce and provides temporary credit card for payment.
-- https://commercejs.com/docs/guides/products-react/ Documentation of CommerceJS to fetch APIs
-- https://stripe.com/docs/stripe-js/react Documentation to connect Stripe with React components for Stripe.js and Stripe Elements
-
-
-# Installation 
-
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](#running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-The app is ready to be deployed!
-
-See the section about [deployment](#deployment) for more information.
-
-## Contact 
- <h3 align="center">
-  <code> Akshat Jalan </code>
-</h3>
-  <p align="center"> 
-
-  <a href="https://github.com/Akshatjalan">
-    <img src="https://github.com/Akshatjalan/akshat/blob/master/Color/Github.svg" width="30" height="30" hspace="20">
-  </a>
-
-  <a href="https://www.linkedin.com/in/akshat-jalan/">
-    <img src="https://github.com/Akshatjalan/akshat/blob/master/Color/LinkedIN.svg" width="30" height="30" hspace="20">
-  </a>
-
-  <a href="https://www.instagram.com/akshatxjalan/">
-    <img src="https://github.com/Akshatjalan/akshat/blob/master/Color/Instagram.svg" width="30" height="30" hspace="20">
-  </a>
-    <a href="mailto:jalanakshat2@gmail.com">
-    <img src="https://github.com/Akshatjalan/akshat/blob/master/Color/Gmail.svg"  width="30" height="30" hspace="20">
-  </a>
-
+**Live Demo**: [book-store-online.vercel.app](https://book-store-online.vercel.app/)
+<p float="center">
+<img src="./src/assets/ScreenShots/Home%20Page.png" height="450px"/>
 </p>
+A feature-rich library management web application with a sleek and user-friendly interface, optimized for book lovers, complete with advanced functionalities such as user authentication, book search, filtering, sorting, and a shopping cart.
+
+
+## Features
+
+### Aesthetically Pleasing Loading Animation
+
+- Engage users with an appealing loading animation during data fetch.
+
+### User Authentication
+
+- User signup and login functionality with proper authentication and session management.
+- Support for social media login.
+- Verification via email and mobile number for added security.
+  <p>
+  <img src="./src/assets/ScreenShots/Login%20Page.png" height="270px"/>
+  <img src="./src/assets/ScreenShots/phone%20authentication.png" height="270px" />
+  </p>
+
+
+
+  
+### Books Listing
+
+- Display a comprehensive list of books.
+- Utilize a real API endpoint as the data source for books.
+  <p>
+  <img src="./src/assets/ScreenShots/Book.png" height="450px"/>
+  </p>
+
+
+
+### Advanced Search
+
+- A robust search bar that suggests and searches based on various book attributes, including book name, author name, genre, and year of publishing.
+  <p>
+  <img src="./src/assets/ScreenShots/Search%20Suggestions.png" height="450px"/>
+  </p>
+
+### Availability Indication
+
+- Visually indicate the availability of books and the number of copies in stock.
+- Display essential book details, such as title, author, genre, and publication year.
+
+### Sorting and Filtering
+
+- Allow users to sort and filter the book list by title, author, subject, and publish date.
+
+### Count Display
+
+- Show the count of books in search results and after applying filters.
+
+### Cart Feature
+
+- Implement a shopping cart where users can add books and proceed to rent them.
+- Reflect changes in book availability and stock in real-time.
+  <p>
+  <img src="./src/assets/ScreenShots/Cart.png" height="270px"/>
+  <img src="./src/assets/ScreenShots/Checkout.png" height="270px" />
+  </p>
+
+## Tech Stack
+
+- ReactJs
+- HTML
+- CSS
+- JavaScript
+- Online Library Api
+- auth0 authentication
+- styled-components
+
 
