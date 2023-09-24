@@ -13,6 +13,8 @@ import "mdbreact/dist/css/mdb.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import Login from "./components/Login/Login";
+import Loader  from "react-loader-spinner"; // Updated import
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 const App = () => {
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
@@ -21,6 +23,7 @@ const App = () => {
   const [cart, setCart] = useState({});
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(true); // Added loading state
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
@@ -78,16 +81,19 @@ const App = () => {
   };
 
   useEffect(() => {
-    fetchProducts();
-    fetchCart();
+    const fetchData = async () => {
+      setIsLoading(true);
+      await fetchProducts();
+      await fetchCart();
+      setIsLoading(false);
+    };
+
+    fetchData();
   }, []);
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
-  
-
   return (
-     
     <div>
       <Router>
         <div style={{ display: "flex" }}>
@@ -96,38 +102,57 @@ const App = () => {
             totalItems={cart.total_items}
             handleDrawerToggle={handleDrawerToggle}
           />
-          {
-            isAuthenticated ? <Switch>
-            <Route exact path="/">
-              <Products
-                products={products}
-                onAddToCart={handleAddToCart}
-                handleUpdateCartQty
-              />
-            </Route>
-            <Route exact path="/cart">
-              <Cart
-                cart={cart}
-                onUpdateCartQty={handleUpdateCartQty}
-                onRemoveFromCart={handleRemoveFromCart}
-                onEmptyCart={handleEmptyCart}
-              />
-            </Route>
-            <Route path="/checkout" exact>
-              <Checkout
-                cart={cart}
-                order={order}
-                onCaptureCheckout={handleCaptureCheckout}
-                error={errorMessage}
-              />
-            </Route>
-            <Route path="/product-view/:id" exact>
-              <ProductView />
-            </Route>
-          </Switch> :
-          <Login/>
-          }
-          
+          {isLoading ? (
+            
+            <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              minHeight: "100vh", 
+              margin: "0 auto",
+            }}
+          >
+            <Loader
+              type="Puff"
+              color="#00BFFF"
+              height={100}
+              width={100}
+              timeout={5000} 
+            />
+            </div>
+          ) : isAuthenticated ? (
+            <Switch>
+              <Route exact path="/">
+                <Products
+                  products={products}
+                  onAddToCart={handleAddToCart}
+                  handleUpdateCartQty
+                />
+              </Route>
+              <Route exact path="/cart">
+                <Cart
+                  cart={cart}
+                  onUpdateCartQty={handleUpdateCartQty}
+                  onRemoveFromCart={handleRemoveFromCart}
+                  onEmptyCart={handleEmptyCart}
+                />
+              </Route>
+              <Route path="/checkout" exact>
+                <Checkout
+                  cart={cart}
+                  order={order}
+                  onCaptureCheckout={handleCaptureCheckout}
+                  error={errorMessage}
+                />
+              </Route>
+              <Route path="/product-view/:id" exact>
+                <ProductView />
+              </Route>
+            </Switch>
+          ) : (
+            <Login />
+          )}
         </div>
       </Router>
       <Footer />
