@@ -78,7 +78,7 @@ A feature-rich library management web application with a sleek and user-friendly
 - HTML
 - CSS
 - JavaScript
-- Online Library Api
+- chec API
 - auth0 authentication
 - styled-components
 
